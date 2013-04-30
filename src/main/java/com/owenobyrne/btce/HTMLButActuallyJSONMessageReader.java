@@ -13,6 +13,8 @@ import javax.ws.rs.ext.Provider;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
+// Needed to create this wrapper reader as BTC-E send text/html as content-type instead of application/json
+
 @Provider
 @Consumes(MediaType.TEXT_HTML)
 public class HTMLButActuallyJSONMessageReader implements MessageBodyReader<Object> {
@@ -26,6 +28,6 @@ public class HTMLButActuallyJSONMessageReader implements MessageBodyReader<Objec
 	public Object readFrom(Class<Object> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, String> httpHeaders,
 			InputStream entityStream) throws IOException {
 		return new JacksonJsonProvider().readFrom(type, genericType, annotations, MediaType.APPLICATION_JSON_TYPE, httpHeaders, entityStream);
-		
+
 	}
 }
