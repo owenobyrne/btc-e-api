@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.owenobyrne.btce.api.model.Depth;
-import com.owenobyrne.btce.api.model.Info;
+import com.owenobyrne.btce.api.model.BTCEInfo;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
@@ -42,13 +42,13 @@ public class BTCE {
 	private @Value("${btcesecret}")
 	String apiSecret;
 
-	public Info getInfo() throws BTCEException {
+	public BTCEInfo getInfo() throws BTCEException {
 
 		MultivaluedMap<String, String> formData = new MultivaluedMapImpl();
 		formData.add("method", "getInfo");
 		ClientResponse response = doPostPrivateAPI(formData);
 
-		Info i = response.getEntity(new GenericType<Info>() {
+		BTCEInfo i = response.getEntity(new GenericType<BTCEInfo>() {
 		});
 
 		logger.info("" + i.getReturn().getFunds().get("btc"));

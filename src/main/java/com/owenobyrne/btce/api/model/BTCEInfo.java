@@ -6,7 +6,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author Owen
  *
  */
-public class Info {
+public class BTCEInfo {
 	String success;
 	@JsonProperty("return")
 	InfoDatum data;
